@@ -9,7 +9,7 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     AuthModule,
     SupabaseModule,
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
   ],
   controllers: [AppController],
   providers: [AppService],
