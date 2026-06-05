@@ -17,7 +17,7 @@ export class AuthService {
 
   // 1. Register a new user
   async register(body: any) {
-    const { email, password } = body;
+    const { email, password, role } = body;
 
     // Check if user already exists
     const { data: existingUser } = await this.supabaseService.client
@@ -34,7 +34,7 @@ export class AuthService {
     const passwordHash = await bcrypt.hash(password, 10);
     const { data, error } = await this.supabaseService.client
       .from('users')
-      .insert([{ email, password_hash: passwordHash }])
+      .insert([{ email, password_hash: passwordHash, role }])
       .select()
       .single();
 
